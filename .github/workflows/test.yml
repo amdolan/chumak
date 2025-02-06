@@ -2,14 +2,19 @@ name: Erlang CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
     name: Test on OTP ${{matrix.otp_version}}
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pull-requests: write
     
     strategy:
       matrix:
